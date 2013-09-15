@@ -1,31 +1,28 @@
 public abstract class Conta{
-	protected String accountNumber;
-	protected String accountHolder;
-	protected double currentBalance;
+	protected String nroConta;
+	protected String titular;
+	protected double saldo;
 	
 
 	public double getBalance(){
-		return this.currentBalance;
+		return this.saldo;
 	}
 	public String getAccntNumber(){
-		return this.accountNumber;
+		return this.nroConta;
 		
 	}
 	public void deposit(double dep){
-		this.currentBalance=currentBalance + dep;
+		this.saldo=saldo + dep;
 	}
 	public  double processCheque(int chequeAmount){
-		if(this.currentBalance<1000)
+		if(this.saldo<1000)
 		{
-			this.currentBalance = currentBalance -(chequeAmount+0.15);
-			return currentBalance;
+			this.saldo = saldo -(chequeAmount+0.15);
+			return saldo;
 		}
 		else
-			this.currentBalance = currentBalance -chequeAmount;
-			return currentBalance;
+			this.saldo = saldo -chequeAmount;
+			return saldo;
 	}
-	@Override
-	public String toString(){
-		return String.format("%s: %s \n%s: %s \n%s: %s","Name",accountHolder,"Account Number",accountNumber,"Account Balance",currentBalance);
-	}
+	
 }
