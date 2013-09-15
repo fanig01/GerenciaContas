@@ -36,21 +36,21 @@ public class GUI extends JFrame implements ActionListener{
 		JTabbedPane tabbedPane = new JTabbedPane();
 		
 		/****************************
-		*Tab 1 pmroDepositoisation
+		1
 		*****************************/
-		//create textboxes
+		//labels
 		nome = new JTextField(10);
 		nroConta = new JTextField(10);
 		pmroDeposito = new JTextField(10);
 		
-		// set up the info TextArea
+		//textos
         info = new TextArea("",3,15);
         info.setEditable(false);
         info.setForeground(Color.red);
         info.setBackground(Color.white);
         
         
-        //create buttons
+        //buttons
         JButton submit = new JButton("Criar Conta Corrente");
         JButton submit2 = new JButton("Criar Conta Poupanca");
         limpar = new JButton("Limpar");
@@ -61,14 +61,14 @@ public class GUI extends JFrame implements ActionListener{
         
         
 		
-		//create panels
+		//panels
 		JPanel nomePanel = new JPanel();
 		JPanel nroContaPanel= new JPanel();
 		JPanel balancePanel = new JPanel();
 		JPanel buttonPanel = new JPanel();
 		JPanel mainPanel1 = new JPanel();
 		
-		//add to the panels
+		//+ panels
 		nomePanel.add(new JLabel("                    Nome: "));
 		nomePanel.add(nome);
 		nroContaPanel.add(new JLabel("Numero da Conta: "));
@@ -79,7 +79,7 @@ public class GUI extends JFrame implements ActionListener{
 		buttonPanel.add(submit2);
 		buttonPanel.add(limpar);
 		
-		//add the panels to the mainPanel
+		//mainPanel
 		mainPanel1.setLayout(new GridLayout(5,1));
 		mainPanel1.add(nomePanel);
 		mainPanel1.add(nroContaPanel);
@@ -90,16 +90,16 @@ public class GUI extends JFrame implements ActionListener{
 		
 		
 		
-		//add main panel to the JTabbedPane
+		//Pane
 		
 		tabbedPane.addTab("Nova Conta", null,mainPanel1,"Create");
 
 		
 		/****************************
-		*Tab 2 pmroDepositoisation
+		2
 		*****************************/
 		
-		//Create text fields
+		//textos
 		nroConta2 = new JTextField(10);
 		JButton display = new JButton("Mostrar");
 		limpar2 = new JButton("Outra Conta");
@@ -107,38 +107,38 @@ public class GUI extends JFrame implements ActionListener{
 		display.addActionListener(this);
 		limpar2.addActionListener(this);
 		
-		// set up the infoSaldo label
+		//labels
         infoSaldo = new JLabel();
         infoSaldo.setForeground(Color.red);
         infoSaldo.setBackground(Color.white);
         infoSaldo.setOpaque( true );
 		
 		
-		//create panels
+		//panels
 		JPanel accntPanel = new JPanel();
 		JPanel buttnPanel = new JPanel();
 		
-		//add to the panels
+		//+ panels
 		accntPanel.add(new JLabel("Numero da Conta:"));
 		accntPanel.add(nroConta2);
 		buttnPanel.add(display);
 		buttnPanel.add(limpar2);
 		
-		//add the panels to the mainPanel1
+		//mainPanel
 		JPanel mainPanel2 = new JPanel();
 		mainPanel2.setLayout(new GridLayout(3,1));
 		mainPanel2.add(accntPanel);
 		mainPanel2.add(buttnPanel);
 		mainPanel2.add(infoSaldo);
 		
-		//add mainPanel2 to tabbedPane
+		//Pane
 		tabbedPane.addTab("Saldo", null,mainPanel2,"Balance");
 		
 		/****************************
-		*Tab 3 pmroDepositoisation
+		3
 		*****************************/
 		
-		//instatiating textfields and buttons
+		//buttons
 		nroConta3 = new JTextField(10);
 		quantia = new JTextField(10);
 		JButton  process = new JButton("Sacar");
@@ -147,18 +147,18 @@ public class GUI extends JFrame implements ActionListener{
 		process.addActionListener(this);
 		limpar3.addActionListener(this);
 		
-		// set up the infoSaque label
+		//label
         infoSaque = new JLabel();
         infoSaque.setForeground(Color.red);
         infoSaque.setBackground(Color.white);
         infoSaque.setOpaque( true );
 		
-		//create panels
+		//panels
 		JPanel accntPanel2 = new JPanel();
 		JPanel quantiaPanel = new JPanel();
 		JPanel buttnPanel2 = new JPanel();
 		
-		//add to the panels
+		//+panels
 		accntPanel2.add(new JLabel("  Numero da Conta:"));
 		accntPanel2.add(nroConta3);
 		quantiaPanel.add(new JLabel("Quantidade a Sacar:"));
@@ -166,7 +166,7 @@ public class GUI extends JFrame implements ActionListener{
 		buttnPanel2.add(process);
 		buttnPanel2.add(limpar3);
 		
-		//add the panels to the mainPanel1
+		//mainPane
 		JPanel mainPanel3 = new JPanel();
 		mainPanel3.setLayout(new GridLayout(4,1));
 		mainPanel3.add(accntPanel2);
@@ -174,13 +174,13 @@ public class GUI extends JFrame implements ActionListener{
 		mainPanel3.add(buttnPanel2);
 		mainPanel3.add(infoSaque);
 		
-		//add mainPanel3 to tabbedPane
+		//Pane
 		tabbedPane.addTab("Saques", null,mainPanel3,"Cheques");
 		
 		/****************************
-		*Tab 4 pmroDepositoisation
+		4
 		*****************************/
-		//instatiating TextFields labels and buttons
+		//textos e buttons
 		nroConta4 = new JTextField(10);
 		quantia2 = new JTextField(10);
 		infoDeposito = new JLabel();
@@ -190,18 +190,18 @@ public class GUI extends JFrame implements ActionListener{
 		limpar4.addActionListener(this);
 		deposit.addActionListener(this);
 		
-		// set up the infoDeposito label
+		//label
         infoDeposito = new JLabel();
         infoDeposito.setForeground(Color.red);
         infoDeposito.setBackground(Color.white);
         infoDeposito.setOpaque( true );
 		
-		//create panels
+		//panels
 		JPanel accntPanel3 = new JPanel();
 		JPanel quantiaPanel2 = new JPanel();
 		JPanel buttnPanel3 = new JPanel();
 		
-		//add to the panels
+		//+panels
 		accntPanel3.add(new JLabel("  Numero da Conta:"));
 		accntPanel3.add(nroConta4);
 		quantiaPanel2.add(new JLabel("    Quantidade a Depositar:"));
@@ -210,7 +210,7 @@ public class GUI extends JFrame implements ActionListener{
 		buttnPanel3.add(limpar4);
 		
 		
-		//add the panels to the mainPanel1
+		//mainPane
 		JPanel mainPanel4 = new JPanel();
 		mainPanel4.setLayout(new GridLayout(4,1));
 		mainPanel4.add(accntPanel3);
@@ -218,14 +218,14 @@ public class GUI extends JFrame implements ActionListener{
 		mainPanel4.add(buttnPanel3);
 		mainPanel4.add(infoDeposito);
 		
-		//add mainPanel3 to tabbedPane
+		//Pane
 		tabbedPane.addTab("Depositos", null,mainPanel4,"Depositos");
 		add(tabbedPane);
 				
-	}//Constructor ends here
+	}//end
 	
 	/***************************************
-	 * Action Listeners
+	 Açoes
 	 ***************************************/
 	
 	public void actionPerformed(ActionEvent evt){

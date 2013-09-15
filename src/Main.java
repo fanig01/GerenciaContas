@@ -1,8 +1,4 @@
-/******************************************************************
-*This program simualtes a bank account,When the details are entered
-*into the form a CheckingAccount object is created, this object can
-*check its balance, deposit into the account and process cheques.
-*******************************************************************/
+
 
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
