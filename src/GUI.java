@@ -9,26 +9,26 @@ import javax.swing.JTabbedPane;
 public class GUI extends JFrame implements ActionListener{
 
 	
-	private JTextField name;
-	private JTextField amount;
-	private JTextField amount2;
-	private JTextField accountNumber;
-	private JTextField accountNumber2;
-	private JTextField accountNumber3;
-	private JTextField accountNumber4;
-	private JTextField initial;
+	private JTextField nome;
+	private JTextField quantia;
+	private JTextField quantia2;
+	private JTextField nroConta;
+	private JTextField nroConta2;
+	private JTextField nroConta3;
+	private JTextField nroConta4;
+	private JTextField pmroDeposito;
 	
-	private TextArea details;
-	private JLabel balanceDetail;
-	private JLabel chequeDetail;
-	private JLabel depositDetail;
+	private TextArea info;
+	private JLabel infoSaldo;
+	private JLabel infoSaque;
+	private JLabel infoDeposito;
 	
-	private JButton clear;
-	private JButton clear2;
-	private JButton clear3;
-	private JButton clear4;
+	private JButton limpar;
+	private JButton limpar2;
+	private JButton limpar3;
+	private JButton limpar4;
 	
-	private Conta account1;
+	private Conta conta1;
 	
 	public GUI(){
 		super("Banco Virtual");
@@ -36,56 +36,56 @@ public class GUI extends JFrame implements ActionListener{
 		JTabbedPane tabbedPane = new JTabbedPane();
 		
 		/****************************
-		*Tab 1 Initialisation
+		*Tab 1 pmroDepositoisation
 		*****************************/
 		//create textboxes
-		name = new JTextField(10);
-		accountNumber = new JTextField(10);
-		initial = new JTextField(10);
+		nome = new JTextField(10);
+		nroConta = new JTextField(10);
+		pmroDeposito = new JTextField(10);
 		
-		// set up the details TextArea
-        details = new TextArea("",3,15);
-        details.setEditable(false);
-        details.setForeground(Color.red);
-        details.setBackground(Color.white);
+		// set up the info TextArea
+        info = new TextArea("",3,15);
+        info.setEditable(false);
+        info.setForeground(Color.red);
+        info.setBackground(Color.white);
         
         
         //create buttons
         JButton submit = new JButton("Criar Conta Corrente");
         JButton submit2 = new JButton("Criar Conta Poupanca");
-        clear = new JButton("Limpar");
-        clear.setEnabled(false);
+        limpar = new JButton("Limpar");
+        limpar.setEnabled(false);
         submit.addActionListener(this);
         submit2.addActionListener(this);
-        clear.addActionListener(this);
+        limpar.addActionListener(this);
         
         
 		
 		//create panels
-		JPanel namePanel = new JPanel();
-		JPanel accountNumberPanel= new JPanel();
+		JPanel nomePanel = new JPanel();
+		JPanel nroContaPanel= new JPanel();
 		JPanel balancePanel = new JPanel();
 		JPanel buttonPanel = new JPanel();
 		JPanel mainPanel1 = new JPanel();
 		
 		//add to the panels
-		namePanel.add(new JLabel("                    Nome: "));
-		namePanel.add(name);
-		accountNumberPanel.add(new JLabel("Numero da Conta: "));
-		accountNumberPanel.add(accountNumber);
+		nomePanel.add(new JLabel("                    Nome: "));
+		nomePanel.add(nome);
+		nroContaPanel.add(new JLabel("Numero da Conta: "));
+		nroContaPanel.add(nroConta);
 		balancePanel.add(new JLabel("      Primeiro Deposito:"));
-		balancePanel.add(initial);
+		balancePanel.add(pmroDeposito);
 		buttonPanel.add(submit);
 		buttonPanel.add(submit2);
-		buttonPanel.add(clear);
+		buttonPanel.add(limpar);
 		
 		//add the panels to the mainPanel
 		mainPanel1.setLayout(new GridLayout(5,1));
-		mainPanel1.add(namePanel);
-		mainPanel1.add(accountNumberPanel);
+		mainPanel1.add(nomePanel);
+		mainPanel1.add(nroContaPanel);
 		mainPanel1.add(balancePanel);
 		mainPanel1.add(buttonPanel);
-		mainPanel1.add(details);
+		mainPanel1.add(info);
 		
 		
 		
@@ -96,22 +96,22 @@ public class GUI extends JFrame implements ActionListener{
 
 		
 		/****************************
-		*Tab 2 Initialisation
+		*Tab 2 pmroDepositoisation
 		*****************************/
 		
 		//Create text fields
-		accountNumber2 = new JTextField(10);
+		nroConta2 = new JTextField(10);
 		JButton display = new JButton("Mostrar");
-		clear2 = new JButton("Outra Conta");
-		clear2.setEnabled(false);
+		limpar2 = new JButton("Outra Conta");
+		limpar2.setEnabled(false);
 		display.addActionListener(this);
-		clear2.addActionListener(this);
+		limpar2.addActionListener(this);
 		
-		// set up the balanceDetail label
-        balanceDetail = new JLabel();
-        balanceDetail.setForeground(Color.red);
-        balanceDetail.setBackground(Color.white);
-        balanceDetail.setOpaque( true );
+		// set up the infoSaldo label
+        infoSaldo = new JLabel();
+        infoSaldo.setForeground(Color.red);
+        infoSaldo.setBackground(Color.white);
+        infoSaldo.setOpaque( true );
 		
 		
 		//create panels
@@ -120,103 +120,103 @@ public class GUI extends JFrame implements ActionListener{
 		
 		//add to the panels
 		accntPanel.add(new JLabel("Numero da Conta:"));
-		accntPanel.add(accountNumber2);
+		accntPanel.add(nroConta2);
 		buttnPanel.add(display);
-		buttnPanel.add(clear2);
+		buttnPanel.add(limpar2);
 		
 		//add the panels to the mainPanel1
 		JPanel mainPanel2 = new JPanel();
 		mainPanel2.setLayout(new GridLayout(3,1));
 		mainPanel2.add(accntPanel);
 		mainPanel2.add(buttnPanel);
-		mainPanel2.add(balanceDetail);
+		mainPanel2.add(infoSaldo);
 		
 		//add mainPanel2 to tabbedPane
 		tabbedPane.addTab("Saldo", null,mainPanel2,"Balance");
 		
 		/****************************
-		*Tab 3 Initialisation
+		*Tab 3 pmroDepositoisation
 		*****************************/
 		
 		//instatiating textfields and buttons
-		accountNumber3 = new JTextField(10);
-		amount = new JTextField(10);
+		nroConta3 = new JTextField(10);
+		quantia = new JTextField(10);
 		JButton  process = new JButton("Sacar");
-		clear3 = new JButton("Novo Saque");
-		clear3.setEnabled(false);
+		limpar3 = new JButton("Novo Saque");
+		limpar3.setEnabled(false);
 		process.addActionListener(this);
-		clear3.addActionListener(this);
+		limpar3.addActionListener(this);
 		
-		// set up the chequeDetail label
-        chequeDetail = new JLabel();
-        chequeDetail.setForeground(Color.red);
-        chequeDetail.setBackground(Color.white);
-        chequeDetail.setOpaque( true );
+		// set up the infoSaque label
+        infoSaque = new JLabel();
+        infoSaque.setForeground(Color.red);
+        infoSaque.setBackground(Color.white);
+        infoSaque.setOpaque( true );
 		
 		//create panels
 		JPanel accntPanel2 = new JPanel();
-		JPanel amountPanel = new JPanel();
+		JPanel quantiaPanel = new JPanel();
 		JPanel buttnPanel2 = new JPanel();
 		
 		//add to the panels
 		accntPanel2.add(new JLabel("  Numero da Conta:"));
-		accntPanel2.add(accountNumber3);
-		amountPanel.add(new JLabel("Quantidade a Sacar:"));
-		amountPanel.add(amount);
+		accntPanel2.add(nroConta3);
+		quantiaPanel.add(new JLabel("Quantidade a Sacar:"));
+		quantiaPanel.add(quantia);
 		buttnPanel2.add(process);
-		buttnPanel2.add(clear3);
+		buttnPanel2.add(limpar3);
 		
 		//add the panels to the mainPanel1
 		JPanel mainPanel3 = new JPanel();
 		mainPanel3.setLayout(new GridLayout(4,1));
 		mainPanel3.add(accntPanel2);
-		mainPanel3.add(amountPanel);
+		mainPanel3.add(quantiaPanel);
 		mainPanel3.add(buttnPanel2);
-		mainPanel3.add(chequeDetail);
+		mainPanel3.add(infoSaque);
 		
 		//add mainPanel3 to tabbedPane
 		tabbedPane.addTab("Saques", null,mainPanel3,"Cheques");
 		
 		/****************************
-		*Tab 4 Initialisation
+		*Tab 4 pmroDepositoisation
 		*****************************/
 		//instatiating TextFields labels and buttons
-		accountNumber4 = new JTextField(10);
-		amount2 = new JTextField(10);
-		depositDetail = new JLabel();
+		nroConta4 = new JTextField(10);
+		quantia2 = new JTextField(10);
+		infoDeposito = new JLabel();
 		JButton  deposit = new JButton("Depositar");
-		clear4 = new JButton("Novo Deposito");
-		clear4.setEnabled(false);
-		clear4.addActionListener(this);
+		limpar4 = new JButton("Novo Deposito");
+		limpar4.setEnabled(false);
+		limpar4.addActionListener(this);
 		deposit.addActionListener(this);
 		
-		// set up the depositDetail label
-        depositDetail = new JLabel();
-        depositDetail.setForeground(Color.red);
-        depositDetail.setBackground(Color.white);
-        depositDetail.setOpaque( true );
+		// set up the infoDeposito label
+        infoDeposito = new JLabel();
+        infoDeposito.setForeground(Color.red);
+        infoDeposito.setBackground(Color.white);
+        infoDeposito.setOpaque( true );
 		
 		//create panels
 		JPanel accntPanel3 = new JPanel();
-		JPanel amountPanel2 = new JPanel();
+		JPanel quantiaPanel2 = new JPanel();
 		JPanel buttnPanel3 = new JPanel();
 		
 		//add to the panels
 		accntPanel3.add(new JLabel("  Numero da Conta:"));
-		accntPanel3.add(accountNumber4);
-		amountPanel2.add(new JLabel("    Quantidade a Depositar:"));
-		amountPanel2.add(amount2);
+		accntPanel3.add(nroConta4);
+		quantiaPanel2.add(new JLabel("    Quantidade a Depositar:"));
+		quantiaPanel2.add(quantia2);
 		buttnPanel3.add(deposit);
-		buttnPanel3.add(clear4);
+		buttnPanel3.add(limpar4);
 		
 		
 		//add the panels to the mainPanel1
 		JPanel mainPanel4 = new JPanel();
 		mainPanel4.setLayout(new GridLayout(4,1));
 		mainPanel4.add(accntPanel3);
-		mainPanel4.add(amountPanel2);
+		mainPanel4.add(quantiaPanel2);
 		mainPanel4.add(buttnPanel3);
-		mainPanel4.add(depositDetail);
+		mainPanel4.add(infoDeposito);
 		
 		//add mainPanel3 to tabbedPane
 		tabbedPane.addTab("Depositos", null,mainPanel4,"Depositos");
@@ -233,110 +233,110 @@ public class GUI extends JFrame implements ActionListener{
 		if
 			(click.equals("Criar Conta Corrente"))
 			{	
-				String personName = name.getText();
-				String personAccount = accountNumber.getText();
-				double personInitial = Double.parseDouble(initial.getText());
-				account1 = new ContaCorrente(personAccount,personName, personInitial);
-				clear.setEnabled(true);
-				details.setText(account1.toString());
+				String personnome = nome.getText();
+				String personAccount = nroConta.getText();
+				double personpmroDeposito = Double.parseDouble(pmroDeposito.getText());
+				conta1 = new ContaCorrente(personAccount,personnome, personpmroDeposito);
+				limpar.setEnabled(true);
+				info.setText(conta1.toString());
 			}
 		else if
 		(click.equals("Criar Conta Poupanca"))
 		{	
-			String personName = name.getText();
-			String personAccount = accountNumber.getText();
-			double personInitial = Double.parseDouble(initial.getText());
-			account1 = new ContaPoupanca(personAccount,personName, personInitial);
-			clear.setEnabled(true);
-			details.setText(account1.toString());
+			String personnome = nome.getText();
+			String personAccount = nroConta.getText();
+			double personpmroDeposito = Double.parseDouble(pmroDeposito.getText());
+			conta1 = new ContaPoupanca(personAccount,personnome, personpmroDeposito);
+			limpar.setEnabled(true);
+			info.setText(conta1.toString());
 		}
 		else if
 			(click.equals("Limpar"))
 			{
-				name.setText("");
-				accountNumber.setText("");
-				initial.setText("");
-				details.setText("");
-				name.requestFocus();
-				clear.setEnabled(false);
+				nome.setText("");
+				nroConta.setText("");
+				pmroDeposito.setText("");
+				info.setText("");
+				nome.requestFocus();
+				limpar.setEnabled(false);
 			}
 		else if (click.equals("Mostrar"))
 		{
-			String comp1 = account1.getAccntNumber();
-			String comp2 = accountNumber2.getText();
+			String comp1 = conta1.getAccntNumber();
+			String comp2 = nroConta2.getText();
 			if(Integer.parseInt(comp1)==Integer.parseInt(comp2))
 			{
-				balanceDetail.setText("Saldo: " +account1.getBalance());
-				clear2.setEnabled(true);
+				infoSaldo.setText("Saldo: " +conta1.getBalance());
+				limpar2.setEnabled(true);
 			}
 			else 
 			{
-				balanceDetail.setText("Insira um Numero de Conta Valido");
-				clear2.setEnabled(true);
+				infoSaldo.setText("Insira um Numero de Conta Valido");
+				limpar2.setEnabled(true);
 			}
 		}
 		else if (click.equals("Outra Conta"))
 		{
-			accountNumber2.setText("");
-			balanceDetail.setText("");
-			accountNumber2.requestFocus();
-			clear2.setEnabled(false);
+			nroConta2.setText("");
+			infoSaldo.setText("");
+			nroConta2.requestFocus();
+			limpar2.setEnabled(false);
 		}
 		else if
 			(click.equals("Sacar"))
 			{
-				String comp1 = account1.getAccntNumber();
-				String comp2 = accountNumber3.getText();
-				int amnt = Integer.parseInt(amount.getText());
+				String comp1 = conta1.getAccntNumber();
+				String comp2 = nroConta3.getText();
+				int amnt = Integer.parseInt(quantia.getText());
 				if (Integer.parseInt(comp1)==Integer.parseInt(comp2))
 				{
-					account1.processCheque(amnt);
-					chequeDetail.setText("Saque Realizado com Sucesso");
-					clear3.setEnabled(true);
+					conta1.processCheque(amnt);
+					infoSaque.setText("Saque Realizado com Sucesso");
+					limpar3.setEnabled(true);
 				}
 				else 
 				{
 				
-					chequeDetail.setText("Insira um Numero de Conta Valido");
-					clear3.setEnabled(true);
+					infoSaque.setText("Insira um Numero de Conta Valido");
+					limpar3.setEnabled(true);
 				}
 				
 			}
 		else if
 				(click.equals("Novo Saque"))
 				{
-					amount.setText("");
-					accountNumber3.setText("");
-					chequeDetail.setText("");
-					accountNumber3.requestFocus();
-					clear3.setEnabled(false);
+					quantia.setText("");
+					nroConta3.setText("");
+					infoSaque.setText("");
+					nroConta3.requestFocus();
+					limpar3.setEnabled(false);
 				}		
 					
 			
 		else if
 			(click.equals("Depositar"))
 			{
-				int accnt = Integer.parseInt(accountNumber4.getText());
-				double amnt= Double.parseDouble(amount2.getText());
-				int comp = Integer.parseInt(account1.getAccntNumber()); 
+				int accnt = Integer.parseInt(nroConta4.getText());
+				double amnt= Double.parseDouble(quantia2.getText());
+				int comp = Integer.parseInt(conta1.getAccntNumber()); 
 				if (accnt==comp)
 				{
-					clear4.setEnabled(true);
-					account1.deposit(amnt);
-					depositDetail.setText("Voce Depositou R$: "+amnt);
+					limpar4.setEnabled(true);
+					conta1.deposit(amnt);
+					infoDeposito.setText("Voce Depositou R$: "+amnt);
 				}
 				else
 				{
-					clear4.setEnabled(true);
-					depositDetail.setText("Insira um Numero de Conta Valido");
+					limpar4.setEnabled(true);
+					infoDeposito.setText("Insira um Numero de Conta Valido");
 				}
 			}
 		else if
 			(click.equals("Novo Deposito"))
 			{
-				amount2.setText("");
-				accountNumber4.setText("");
-				clear4.setEnabled(false);
+				quantia2.setText("");
+				nroConta4.setText("");
+				limpar4.setEnabled(false);
 			}				
 	}
 }
