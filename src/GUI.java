@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.JTextArea;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
@@ -46,7 +45,7 @@ public class GUI extends JFrame implements ActionListener{
 		//textos
         info = new TextArea("",3,15);
         info.setEditable(false);
-        info.setForeground(Color.red);
+        info.setForeground(Color.darkGray);
         info.setBackground(Color.white);
         
         
@@ -92,7 +91,7 @@ public class GUI extends JFrame implements ActionListener{
 		
 		//Pane
 		
-		tabbedPane.addTab("Nova Conta", null,mainPanel1,"Create");
+		tabbedPane.addTab("Nova Conta", null,mainPanel1,"Nova Conta");
 
 		
 		/****************************
@@ -109,7 +108,7 @@ public class GUI extends JFrame implements ActionListener{
 		
 		//labels
         infoSaldo = new JLabel();
-        infoSaldo.setForeground(Color.red);
+        infoSaldo.setForeground(Color.darkGray);
         infoSaldo.setBackground(Color.white);
         infoSaldo.setOpaque( true );
 		
@@ -149,7 +148,7 @@ public class GUI extends JFrame implements ActionListener{
 		
 		//label
         infoSaque = new JLabel();
-        infoSaque.setForeground(Color.red);
+        infoSaque.setForeground(Color.darkGray);
         infoSaque.setBackground(Color.white);
         infoSaque.setOpaque( true );
 		
@@ -192,7 +191,7 @@ public class GUI extends JFrame implements ActionListener{
 		
 		//label
         infoDeposito = new JLabel();
-        infoDeposito.setForeground(Color.red);
+        infoDeposito.setForeground(Color.darkGray);
         infoDeposito.setBackground(Color.white);
         infoDeposito.setOpaque( true );
 		
@@ -262,11 +261,11 @@ public class GUI extends JFrame implements ActionListener{
 			}
 		else if (click.equals("Mostrar"))
 		{
-			String comp1 = conta1.getAccntNumber();
+			String comp1 = conta1.getNroConta();
 			String comp2 = nroConta2.getText();
 			if(Integer.parseInt(comp1)==Integer.parseInt(comp2))
 			{
-				infoSaldo.setText("Saldo: " +conta1.getBalance());
+				infoSaldo.setText("Saldo: " +conta1.getSaldo());
 				limpar2.setEnabled(true);
 			}
 			else 
@@ -285,12 +284,12 @@ public class GUI extends JFrame implements ActionListener{
 		else if
 			(click.equals("Sacar"))
 			{
-				String comp1 = conta1.getAccntNumber();
+				String comp1 = conta1.getNroConta();
 				String comp2 = nroConta3.getText();
 				int amnt = Integer.parseInt(quantia.getText());
 				if (Integer.parseInt(comp1)==Integer.parseInt(comp2))
 				{
-					conta1.processCheque(amnt);
+					conta1.processarSaque(amnt);
 					infoSaque.setText("Saque Realizado com Sucesso");
 					limpar3.setEnabled(true);
 				}
@@ -318,7 +317,7 @@ public class GUI extends JFrame implements ActionListener{
 			{
 				int accnt = Integer.parseInt(nroConta4.getText());
 				double amnt= Double.parseDouble(quantia2.getText());
-				int comp = Integer.parseInt(conta1.getAccntNumber()); 
+				int comp = Integer.parseInt(conta1.getNroConta()); 
 				if (accnt==comp)
 				{
 					limpar4.setEnabled(true);

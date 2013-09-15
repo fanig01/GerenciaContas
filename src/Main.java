@@ -1,7 +1,6 @@
 
 
 import javax.swing.JFrame;
-import javax.swing.JTabbedPane;
 import java.awt.Toolkit;
 import java.awt.Dimension;
 

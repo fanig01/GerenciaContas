@@ -1,20 +1,21 @@
 
 public class ContaCorrente extends Conta {
 	
-	public ContaCorrente(String aNumber,String aHolder,double cBalance){
-		nroConta = aNumber;
-		titular = aHolder;
-		saldo = cBalance;
+	public ContaCorrente(String nro,String titular,double saldo){
+		this.nroConta = nro;
+		this.titular = titular;
+		this.saldo = saldo;
 	}
 	
-	public  double processCheque(int chequeAmount){
+	
+	public  double processarSaque(int quantia){
 		if(this.saldo<1000)
 		{
-			this.saldo = saldo -(chequeAmount+0.15);
+			this.saldo = saldo -(quantia+0.15);
 			return saldo;
 		}
 		else
-			this.saldo = saldo -chequeAmount;
+			this.saldo = saldo -quantia;
 			return saldo;
 	}
 
