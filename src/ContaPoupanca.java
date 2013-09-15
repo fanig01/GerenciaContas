@@ -1,5 +1,5 @@
 
-public class ContaPoupanca extends Conta{
+public class ContaPoupanca extends Conta implements Sacavel{
 	
 	public ContaPoupanca(String nro,String titular,double saldo){
 		this.nroConta = nro;
