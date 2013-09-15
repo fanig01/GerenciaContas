@@ -22,11 +22,6 @@ public class GUI extends JFrame implements ActionListener{
 	private JLabel infoSaque;
 	private JLabel infoDeposito;
 	
-	private JButton limpar;
-	private JButton limpar2;
-	private JButton limpar3;
-	private JButton limpar4;
-	
 	private Conta conta1;
 	
 	public GUI(){
@@ -52,11 +47,8 @@ public class GUI extends JFrame implements ActionListener{
         //buttons
         JButton submit = new JButton("Criar Conta Corrente");
         JButton submit2 = new JButton("Criar Conta Poupanca");
-        limpar = new JButton("Limpar");
-        limpar.setEnabled(false);
         submit.addActionListener(this);
         submit2.addActionListener(this);
-        limpar.addActionListener(this);
         
         
 		
@@ -76,7 +68,6 @@ public class GUI extends JFrame implements ActionListener{
 		balancePanel.add(pmroDeposito);
 		buttonPanel.add(submit);
 		buttonPanel.add(submit2);
-		buttonPanel.add(limpar);
 		
 		//mainPanel
 		mainPanel1.setLayout(new GridLayout(5,1));
@@ -100,11 +91,6 @@ public class GUI extends JFrame implements ActionListener{
 		
 		//textos
 		nroConta2 = new JTextField(10);
-		JButton display = new JButton("Mostrar");
-		limpar2 = new JButton("Outra Conta");
-		limpar2.setEnabled(false);
-		display.addActionListener(this);
-		limpar2.addActionListener(this);
 		
 		//labels
         infoSaldo = new JLabel();
@@ -120,13 +106,14 @@ public class GUI extends JFrame implements ActionListener{
 		//+ panels
 		accntPanel.add(new JLabel("Numero da Conta:"));
 		accntPanel.add(nroConta2);
-		buttnPanel.add(display);
-		buttnPanel.add(limpar2);
 		
 		//mainPanel
 		JPanel mainPanel2 = new JPanel();
 		mainPanel2.setLayout(new GridLayout(3,1));
 		mainPanel2.add(accntPanel);
+		JButton display = new JButton("Mostrar");
+		accntPanel.add(display);
+		display.addActionListener(this);
 		mainPanel2.add(buttnPanel);
 		mainPanel2.add(infoSaldo);
 		
@@ -141,10 +128,7 @@ public class GUI extends JFrame implements ActionListener{
 		nroConta3 = new JTextField(10);
 		quantia = new JTextField(10);
 		JButton  process = new JButton("Sacar");
-		limpar3 = new JButton("Novo Saque");
-		limpar3.setEnabled(false);
 		process.addActionListener(this);
-		limpar3.addActionListener(this);
 		
 		//label
         infoSaque = new JLabel();
@@ -163,7 +147,6 @@ public class GUI extends JFrame implements ActionListener{
 		quantiaPanel.add(new JLabel("Quantidade a Sacar:"));
 		quantiaPanel.add(quantia);
 		buttnPanel2.add(process);
-		buttnPanel2.add(limpar3);
 		
 		//mainPane
 		JPanel mainPanel3 = new JPanel();
@@ -184,9 +167,6 @@ public class GUI extends JFrame implements ActionListener{
 		quantia2 = new JTextField(10);
 		infoDeposito = new JLabel();
 		JButton  deposit = new JButton("Depositar");
-		limpar4 = new JButton("Novo Deposito");
-		limpar4.setEnabled(false);
-		limpar4.addActionListener(this);
 		deposit.addActionListener(this);
 		
 		//label
@@ -206,7 +186,6 @@ public class GUI extends JFrame implements ActionListener{
 		quantiaPanel2.add(new JLabel("    Quantidade a Depositar:"));
 		quantiaPanel2.add(quantia2);
 		buttnPanel3.add(deposit);
-		buttnPanel3.add(limpar4);
 		
 		
 		//mainPane
@@ -219,7 +198,7 @@ public class GUI extends JFrame implements ActionListener{
 		
 		//Pane
 		tabbedPane.addTab("Depositos", null,mainPanel4,"Depositos");
-		add(tabbedPane);
+		getContentPane().add(tabbedPane);
 				
 	}//end
 	
@@ -236,7 +215,6 @@ public class GUI extends JFrame implements ActionListener{
 				String personAccount = nroConta.getText();
 				double personpmroDeposito = Double.parseDouble(pmroDeposito.getText());
 				conta1 = new ContaCorrente(personAccount,personnome, personpmroDeposito);
-				limpar.setEnabled(true);
 				info.setText(conta1.toString());
 			}
 		else if
@@ -246,19 +224,9 @@ public class GUI extends JFrame implements ActionListener{
 			String personAccount = nroConta.getText();
 			double personpmroDeposito = Double.parseDouble(pmroDeposito.getText());
 			conta1 = new ContaPoupanca(personAccount,personnome, personpmroDeposito);
-			limpar.setEnabled(true);
 			info.setText(conta1.toString());
 		}
-		else if
-			(click.equals("Limpar"))
-			{
-				nome.setText("");
-				nroConta.setText("");
-				pmroDeposito.setText("");
-				info.setText("");
-				nome.requestFocus();
-				limpar.setEnabled(false);
-			}
+
 		else if (click.equals("Mostrar"))
 		{
 			String comp1 = conta1.getNroConta();
@@ -266,21 +234,13 @@ public class GUI extends JFrame implements ActionListener{
 			if(Integer.parseInt(comp1)==Integer.parseInt(comp2))
 			{
 				infoSaldo.setText("Saldo: " +conta1.getSaldo());
-				limpar2.setEnabled(true);
 			}
 			else 
 			{
 				infoSaldo.setText("Insira um Numero de Conta Valido");
-				limpar2.setEnabled(true);
 			}
 		}
-		else if (click.equals("Outra Conta"))
-		{
-			nroConta2.setText("");
-			infoSaldo.setText("");
-			nroConta2.requestFocus();
-			limpar2.setEnabled(false);
-		}
+
 		else if
 			(click.equals("Sacar"))
 			{
@@ -291,25 +251,14 @@ public class GUI extends JFrame implements ActionListener{
 				{
 					conta1.processarSaque(amnt);
 					infoSaque.setText("Saque Realizado com Sucesso");
-					limpar3.setEnabled(true);
 				}
 				else 
 				{
 				
 					infoSaque.setText("Insira um Numero de Conta Valido");
-					limpar3.setEnabled(true);
 				}
 				
-			}
-		else if
-				(click.equals("Novo Saque"))
-				{
-					quantia.setText("");
-					nroConta3.setText("");
-					infoSaque.setText("");
-					nroConta3.requestFocus();
-					limpar3.setEnabled(false);
-				}		
+			}	
 					
 			
 		else if
@@ -320,23 +269,14 @@ public class GUI extends JFrame implements ActionListener{
 				int comp = Integer.parseInt(conta1.getNroConta()); 
 				if (accnt==comp)
 				{
-					limpar4.setEnabled(true);
 					conta1.deposit(amnt);
 					infoDeposito.setText("Voce Depositou R$: "+amnt);
 				}
 				else
 				{
-					limpar4.setEnabled(true);
 					infoDeposito.setText("Insira um Numero de Conta Valido");
 				}
-			}
-		else if
-			(click.equals("Novo Deposito"))
-			{
-				quantia2.setText("");
-				nroConta4.setText("");
-				limpar4.setEnabled(false);
-			}				
+			}			
 	}
 }
 		 
