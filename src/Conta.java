@@ -1,13 +1,9 @@
-public class Conta extends Object{
-	private String accountNumber;
-	private String accountHolder;
-	private double currentBalance;
+public abstract class Conta{
+	protected String accountNumber;
+	protected String accountHolder;
+	protected double currentBalance;
 	
-	public Conta(String aNumber,String aHolder,double cBalance){
-		accountNumber = aNumber;
-		accountHolder = aHolder;
-		currentBalance = cBalance;
-	}
+
 	public double getBalance(){
 		return this.currentBalance;
 	}

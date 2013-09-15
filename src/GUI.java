@@ -51,10 +51,12 @@ public class GUI extends JFrame implements ActionListener{
         
         
         //create buttons
-        JButton submit = new JButton("Criar");
+        JButton submit = new JButton("Criar Conta Corrente");
+        JButton submit2 = new JButton("Criar Conta Poupanca");
         clear = new JButton("Limpar");
         clear.setEnabled(false);
         submit.addActionListener(this);
+        submit2.addActionListener(this);
         clear.addActionListener(this);
         
         
@@ -74,6 +76,7 @@ public class GUI extends JFrame implements ActionListener{
 		balancePanel.add(new JLabel("      Primeiro Deposito:"));
 		balancePanel.add(initial);
 		buttonPanel.add(submit);
+		buttonPanel.add(submit2);
 		buttonPanel.add(clear);
 		
 		//add the panels to the mainPanel
@@ -228,15 +231,25 @@ public class GUI extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent evt){
 		String click = evt.getActionCommand();
 		if
-			(click.equals("Criar"))
+			(click.equals("Criar Conta Corrente"))
 			{	
 				String personName = name.getText();
 				String personAccount = accountNumber.getText();
 				double personInitial = Double.parseDouble(initial.getText());
-				account1 = new Conta(personAccount,personName, personInitial);
+				account1 = new ContaCorrente(personAccount,personName, personInitial);
 				clear.setEnabled(true);
 				details.setText(account1.toString());
 			}
+		else if
+		(click.equals("Criar Conta Poupanca"))
+		{	
+			String personName = name.getText();
+			String personAccount = accountNumber.getText();
+			double personInitial = Double.parseDouble(initial.getText());
+			account1 = new ContaPoupanca(personAccount,personName, personInitial);
+			clear.setEnabled(true);
+			details.setText(account1.toString());
+		}
 		else if
 			(click.equals("Limpar"))
 			{
