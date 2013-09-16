@@ -1,6 +1,13 @@
 package principal;
+import jdbc.*;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.List;
+
 import javax.swing.*;
 
 
@@ -21,7 +28,7 @@ public class GUI extends JFrame implements ActionListener{
 	private JLabel infoSaque;
 	private JLabel infoDeposito;
 	
-	private Conta conta1;
+	private ContaCorrente conta1;
 	
 	public GUI(){
 		super("Banco Virtual");
@@ -201,6 +208,8 @@ public class GUI extends JFrame implements ActionListener{
 				
 	}//end
 	
+
+	
 	/***************************************
 	 Açoes
 	 ***************************************/
@@ -214,6 +223,13 @@ public class GUI extends JFrame implements ActionListener{
 				int personAccount = Integer.parseInt(nroConta.getText());
 				double personpmroDeposito = Double.parseDouble(pmroDeposito.getText());
 				conta1 = new ContaCorrente(personAccount,personnome, personpmroDeposito);
+				
+				String url = "jdbc:oracle:thin:@localhost:1521:xe";
+				try(Connection con = DriverManager.getConnection(url,"admin","admin")){
+					ContaCRUD crud = new ContaCRUD();
+					crud.criar(con,conta1);
+				}catch(Exception e){}
+				
 				info.setText(conta1.toString());
 			}
 		else if
@@ -222,42 +238,54 @@ public class GUI extends JFrame implements ActionListener{
 			String personnome = nome.getText();
 			int personAccount = Integer.parseInt(nroConta.getText());
 			double personpmroDeposito = Double.parseDouble(pmroDeposito.getText());
-			conta1 = new ContaPoupanca(personAccount,personnome, personpmroDeposito);
+			conta1 = new ContaCorrente(personAccount,personnome, personpmroDeposito);
+			
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+			try(Connection con = DriverManager.getConnection(url,"admin","admin")){
+				ContaCRUD crud = new ContaCRUD();
+				crud.criar(con,conta1);
+			}catch(Exception e){}
+			
 			info.setText(conta1.toString());
 		}
 
 		else if (click.equals("Mostrar"))
 		{
-			int comp1 = conta1.getNroConta();
+		//	int comp1 = conta1.getNroConta();
 			int comp2 = Integer.parseInt(nroConta2.getText());
-			if(comp1==comp2)
-			{
-				infoSaldo.setText("Saldo: " +conta1.getSaldo());
-			}
-			else 
-			{
-				infoSaldo.setText("Insira um Numero de Conta Valido");
-			}
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+			try(Connection con = DriverManager.getConnection(url,"admin","admin")){
+				ContaCRUD crud = new ContaCRUD();
+				List<ContaCorrente>contacorrente = crud.ler(con);
+				for(ContaCorrente conta123 : contacorrente ){
+					if(conta123.nroConta==comp2){
+						infoSaldo.setText(conta123.toString());
+					}
+					
+				}
+			} catch(Exception e){}
+			
 		}
 
 		else if
 			(click.equals("Sacar"))
 			{
-				int comp1 = conta1.getNroConta();
+				//int comp1 = conta1.getNroConta();
 				int comp2 = Integer.parseInt(nroConta3.getText());
-				int amnt = Integer.parseInt(quantia.getText());
-				if (comp1==comp2)
-				{
-					conta1.processarSaque(amnt);
-					infoSaque.setText("Saque Realizado com Sucesso");
-				}
-				else 
-				{
+				double amnt = Integer.parseInt(quantia.getText());
+				String url = "jdbc:oracle:thin:@localhost:1521:xe";
+				try(Connection con = DriverManager.getConnection(url,"admin","admin")){
+					ContaCRUD crud = new ContaCRUD();
+					List<ContaCorrente>contacorrente = crud.ler(con);
+					for(ContaCorrente conta123 : contacorrente ){
+						if(conta123.nroConta==comp2){
+							crud.sacar(con, conta123, amnt);
+							infoSaque.setText("Saque Realizado com Sucesso.");
+						}
+					}
+				} catch(Exception e){}
 				
-					infoSaque.setText("Insira um Numero de Conta Valido");
-				}
-				
-			}	
+			}
 					
 			
 		else if
@@ -265,16 +293,20 @@ public class GUI extends JFrame implements ActionListener{
 			{
 				int accnt = Integer.parseInt(nroConta4.getText());
 				double amnt= Double.parseDouble(quantia2.getText());
-				int comp = conta1.getNroConta(); 
-				if (accnt==comp)
-				{
-					conta1.deposit(amnt);
-					infoDeposito.setText("Voce Depositou R$: "+amnt);
-				}
-				else
-				{
-					infoDeposito.setText("Insira um Numero de Conta Valido");
-				}
+			//	int comp = conta1.getNroConta(); 
+				String url = "jdbc:oracle:thin:@localhost:1521:xe";
+				try(Connection con = DriverManager.getConnection(url,"admin","admin")){
+					ContaCRUD crud = new ContaCRUD();
+					List<ContaCorrente>contacorrente = crud.ler(con);
+					for(ContaCorrente conta123 : contacorrente ){
+						if(conta123.nroConta==accnt){
+							crud.depositar(con, conta123, amnt);
+							infoDeposito.setText("Deposito Realizado com Sucesso.");
+						}
+					}
+				} catch(Exception e){}
+				
+			
 			}			
 	}
 }

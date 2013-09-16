@@ -27,6 +27,6 @@ public abstract class Conta{
 	}
 	//reescrevendo o método implícito: toString
 	public String toString(){
-		return String.format("%s: %s \n%s: %s \n%s: %s","Nome do Titular:",titular,"Numero da Conta",nroConta,"Saldo",saldo);
+		return String.format("%s: %s \n%s: %s \n%s: %s","Nome do Titular",titular,"Numero da Conta",nroConta,"Saldo",saldo);
 	}
 }
