@@ -12,7 +12,7 @@ public class AcessoBanco {
 	 */
 	public static void main(String[] args) throws Exception  {
 		// TODO Auto-generated method stub
-		String sql = "select codigo,nome,saldo,tipo from conta";
+		String sql = "select codigo,nome,saldo from conta";
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		
 		try (Connection con = DriverManager.getConnection(url,"admin","admin");
@@ -21,8 +21,7 @@ public class AcessoBanco {
 			while(rs.next()){
 				String s = rs.getString("codigo")
 						+ "; " + rs.getString("nome")
-						+ "; " + rs.getString("saldo")
-						+ "; " + rs.getString("tipo");
+						+ "; " + rs.getString("saldo");
 				System.out.println(s);
 			}
 		}
