@@ -2,6 +2,6 @@ package principal;
 
 public interface Sacavel {
 	
-	public double processarSaque(int quantia);
+	public double processarSaque(double quantia);
 
 }
