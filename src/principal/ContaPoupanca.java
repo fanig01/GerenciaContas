@@ -9,7 +9,7 @@ public class ContaPoupanca extends Conta implements Sacavel{
 	}
 	
 	//reescrevendo o metodo para sacar
-	public  double processarSaque(int quantia){
+	public  double processarSaque(double quantia){
 		if(this.saldo<1000)
 		{
 			this.saldo = saldo -(quantia+1);

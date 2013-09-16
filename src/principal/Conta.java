@@ -15,7 +15,7 @@ public abstract class Conta{
 	public void deposit(double dep){
 		this.saldo=saldo + dep;
 	}
-	public  double processarSaque(int quantia){
+	public  double processarSaque(double quantia){
 		if(this.saldo<1000)
 		{
 			this.saldo = saldo -(quantia+0.15);
