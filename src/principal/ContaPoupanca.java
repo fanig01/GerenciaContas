@@ -2,7 +2,7 @@ package principal;
 
 public class ContaPoupanca extends Conta implements Sacavel{
 	
-	public ContaPoupanca(String nro,String titular,double saldo){
+	public ContaPoupanca(int nro,String titular,double saldo){
 		this.nroConta = nro;
 		this.titular = titular;
 		this.saldo = saldo;

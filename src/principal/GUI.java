@@ -220,7 +220,7 @@ public class GUI extends JFrame implements ActionListener{
 		(click.equals("Criar Conta Poupanca"))
 		{	
 			String personnome = nome.getText();
-			String personAccount = nroConta.getText();
+			int personAccount = Integer.parseInt(nroConta.getText());
 			double personpmroDeposito = Double.parseDouble(pmroDeposito.getText());
 			conta1 = new ContaPoupanca(personAccount,personnome, personpmroDeposito);
 			info.setText(conta1.toString());
